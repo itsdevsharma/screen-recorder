@@ -3,8 +3,8 @@ import connectDB from '@/lib/db';
 import Video from '@/models/Video';
 
 export async function GET(
-  req: NextRequest,
-  { params }: { params: { id: string } }
+  _req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectDB();
