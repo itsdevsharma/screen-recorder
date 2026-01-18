@@ -8,7 +8,8 @@ export async function GET(
 ) {
   try {
     await connectDB();
-    const video = await Video.findById(params.id);
+    const { id } = await params;
+    const video = await Video.findById(id);
 
     if (!video) {
       return NextResponse.json(
