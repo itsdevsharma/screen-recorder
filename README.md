@@ -74,7 +74,7 @@ npm install
 ### 3. Environment Setup
 Create a `.env.local` file:
 ```bash
-cp .env.local.example .env.local
+cp .env.local
 ```
 
 Edit `.env.local` with your configuration:
