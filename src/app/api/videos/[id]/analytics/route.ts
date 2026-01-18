@@ -2,10 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/lib/db';
 import Video from '@/models/Video';
 
-export const GET = async (
+export async function GET(
   req: NextRequest,
   { params }: { params: { id: string } }
-) => {
+) {
   try {
     await connectDB();
     const video = await Video.findById(params.id);
@@ -40,9 +40,10 @@ export const GET = async (
     return NextResponse.json(
       {
         success: false,
-        message: error.message,
+        message: error.message ?? 'Internal Server Error',
       },
       { status: 500 }
     );
   }
-};
+}
+
