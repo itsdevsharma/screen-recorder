@@ -3,7 +3,7 @@ import connectDB from '@/lib/db';
 import Video from '@/models/Video';
 
 export const POST = async (
-  req: NextRequest,
+  _req: NextRequest,
   { params }: { params: { id: string } }
 ) => {
   try {

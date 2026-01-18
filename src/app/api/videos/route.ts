@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import connectDB from '@/lib/db';
 import Video from '@/models/Video';
 
-export const GET = async (req: NextRequest) => {
+export const GET = async () => {
   try {
     await connectDB();
     const videos = await Video.find().sort({ createdAt: -1 });

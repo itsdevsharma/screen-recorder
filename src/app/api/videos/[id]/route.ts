@@ -84,7 +84,7 @@ export const PATCH = async (
 };
 
 export const DELETE = async (
-  req: NextRequest,
+  /*req: NextRequest,*/
   { params }: { params: { id: string } }
 ) => {
   try {
