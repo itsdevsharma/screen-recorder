@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/lib/db';
 import Video from '@/models/Video';
-import { deleteFromCloudinary } from '@/lib/cloudinary';
 
 export const GET = async (req: NextRequest) => {
   try {

@@ -9,6 +9,7 @@ export async function GET(
 ) {
   try {
     await connectDB();
+    const { id } = await params;
     const video = await Video.findById(id);
 
     if (!video) {
