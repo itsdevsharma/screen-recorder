@@ -3,13 +3,13 @@ import connectDB from '@/lib/db';
 import Video from '@/models/Video';
 import { deleteFromCloudinary } from '@/lib/cloudinary';
 
-export const GET = async (
-  req: NextRequest,
+export async function GET(
+  _req: NextRequest,
   { params }: { params: { id: string } }
-) => {
+) {
   try {
     await connectDB();
-    const video = await Video.findById(params.id);
+    const video = await Video.findById(id);
 
     if (!video) {
       return NextResponse.json(
