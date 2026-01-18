@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import connectDB from '@/lib/db';
 import Video from '@/models/Video';
 
-export const GET = async () => {
+export async function GET() {
   try {
     await connectDB();
     const videos = await Video.find().sort({ createdAt: -1 });
@@ -24,4 +24,4 @@ export const GET = async () => {
       { status: 500 }
     );
   }
-};
+}

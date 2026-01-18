@@ -4,19 +4,17 @@ import Video from '@/models/Video';
 
 export async function GET(
   _req: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
     await connectDB();
-    const { id } = await params;
+    const { id } = params;
+
     const video = await Video.findById(id);
 
     if (!video) {
       return NextResponse.json(
-        {
-          success: false,
-          message: 'Video not found',
-        },
+        { success: false, message: 'Video not found' },
         { status: 404 }
       );
     }
@@ -47,4 +45,3 @@ export async function GET(
     );
   }
 }
-
