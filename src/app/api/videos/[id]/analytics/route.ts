@@ -2,13 +2,19 @@ import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/lib/db';
 import Video from '@/models/Video';
 
+type RouteContext = {
+  params: {
+    id: string;
+  };
+};
+
 export async function GET(
   _req: NextRequest,
-  { params }: { params: { id: string } }
+  context: RouteContext
 ) {
   try {
     await connectDB();
-    const { id } = params;
+    const { id } = context.params;
 
     const video = await Video.findById(id);
 

@@ -3,16 +3,22 @@ import connectDB from '@/lib/db';
 import Video from '@/models/Video';
 import { deleteFromCloudinary } from '@/lib/cloudinary';
 
+type RouteContext = {
+  params: {
+    id: string;
+  };
+};
+
 /**
  * GET /api/videos/[id]
  */
 export async function GET(
   _req: NextRequest,
-  { params }: { params: { id: string } }
+  context: RouteContext
 ) {
   try {
     await connectDB();
-    const { id } = params;
+    const { id } = context.params;
 
     const video = await Video.findById(id);
 
@@ -40,14 +46,15 @@ export async function GET(
  */
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: RouteContext
 ) {
   try {
     await connectDB();
+    const { id } = context.params;
     const { title, description } = await req.json();
 
     const video = await Video.findByIdAndUpdate(
-      params.id,
+      id,
       { title, description, updatedAt: new Date() },
       { new: true, runValidators: true }
     );
@@ -80,11 +87,11 @@ export async function PATCH(
  */
 export async function DELETE(
   _req: NextRequest,
-  { params }: { params: { id: string } }
+  context: RouteContext
 ) {
   try {
     await connectDB();
-    const { id } = params;
+    const { id } = context.params;
 
     const video = await Video.findByIdAndDelete(id);
 
